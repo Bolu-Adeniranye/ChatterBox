@@ -1,7 +1,7 @@
 import "./detail.css";
 
-const detail = () => {
-  return <div>detail</div>;
+const Detail = () => {
+  return <div className="detail">Detail</div>;
 };
 
-export default detail;
+export default Detail;
