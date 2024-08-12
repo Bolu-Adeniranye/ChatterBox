@@ -16,6 +16,8 @@ const Chat = () => {
     setOpen(false);
   };
 
+  console.log(text);
+
   return (
     <div className="chat">
       <div className="top">
