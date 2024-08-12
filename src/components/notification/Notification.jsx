@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 const Notification = () => {
   return (
     <div className="">
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="top-right" />
     </div>
   );
 };

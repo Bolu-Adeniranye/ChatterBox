@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./login.css";
 import { toast } from "react-toastify";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../../lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 const Login = () => {
   const [avatar, setAvatar] = useState({
@@ -9,18 +12,49 @@ const Login = () => {
   });
 
   const handleAvatar = (e) => {
-    if (e.target.files[0])
+    const file = e.target.files[0];
+    const validTypes = ["image/jpeg", "image/png"];
+
+    // Check if the file exists and its type is valid
+    if (file && validTypes.includes(file.type)) {
       setAvatar({
-        file: e.target.files[0],
-        url: URL.createObjectURL(e.target.files[0]),
+        file: file,
+        url: URL.createObjectURL(file),
       });
+    } else {
+      alert("Please select a PNG or JPEG image.");
+      // Clear the input if the file type is not valid
+      e.target.value = "";
+    }
   };
 
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
 
-  const handleLogin = e => {
-    e.preventDefault()
+    const { username, email, password } = Object.fromEntries(formData);
 
-  }
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+
+      await setDoc(doc(db, "users", res.user.uid), {
+        username,
+        email,
+        id: res.user.uid,
+        blocked: [],
+      });
+
+      toast.success("Account successfuly created, please Login")
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+  };
+
   return (
     //   Login / Sign Up Page
 
@@ -44,7 +78,7 @@ const Login = () => {
       <div className="item">
         <h2>Create an Account</h2>
 
-        <form>
+        <form onSubmit={handleRegister}>
           <label htmlFor="file">
             <img
               src={avatar.url || "./avatar.png"}
@@ -56,6 +90,7 @@ const Login = () => {
             type="file"
             name="email"
             id="file"
+            accept=".png, .jpg, .jpeg"
             style={{ display: "none" }}
             onChange={handleAvatar}
           />
