@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "emoji-picker-react": "^4.11.1",
+    "firebase": "^10.12.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-toastify": "^10.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -23,5 +25,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0"
-  }
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(axios|react-toastify))"
+  ]
 }

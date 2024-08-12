@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./login.css";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [avatar, setAvatar] = useState({
@@ -14,11 +15,21 @@ const Login = () => {
         url: URL.createObjectURL(e.target.files[0]),
       });
   };
+
+
+  const handleLogin = e => {
+    e.preventDefault()
+
+  }
   return (
+    //   Login / Sign Up Page
+
     <div className="login">
+      {/* Login Section  */}
       <div className="item">
-        <h2>Welcome Back</h2>
-        <form>
+        <h2>Welcome Back,</h2>
+
+        <form onSubmit={handleLogin}>
           <input type="email" placeholder="Email" name="email" />
 
           <input type="password" placeholder="Password" name="password" />
@@ -26,18 +37,20 @@ const Login = () => {
         </form>
       </div>
 
+      {/* PAGE SEPARATOR  */}
       <div className="separator"></div>
 
+      {/* Sign-up Section  */}
       <div className="item">
         <h2>Create an Account</h2>
+
         <form>
           <label htmlFor="file">
             <img
               src={avatar.url || "./avatar.png"}
               alt="Your Profile Picture"
-              width={250}
             />
-            Upload a Profile Picture
+            Upload an image
           </label>
           <input
             type="file"
