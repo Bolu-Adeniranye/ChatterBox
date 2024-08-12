@@ -14,6 +14,7 @@ body {
   justify-content: center;
 
   height: 100vh;
+  color: white;
 }
 
 .container {
@@ -28,4 +29,16 @@ body {
 
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.363);
+}
+
+.loading {
+  padding: 70px 50px 50px 50px;
+
+  height: 200px;
+
+  margin: auto;
+
+  font-size: 36px;
+  border-radius: 10px;
+  background-color: rgba(17, 25, 40, 0.9);
 }

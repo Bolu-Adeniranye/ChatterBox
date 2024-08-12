@@ -61,7 +61,7 @@
       button {
         width: 100%;
 
-        font-weight: 600;
+        font-weight: 500;
 
         padding: 20px;
 
@@ -72,6 +72,11 @@
         color: white;
 
         cursor: pointer;
+
+        &:disabled {
+          cursor: not-allowed;
+          background-color: #1f8ff199;
+        }
       }
     }
   }
