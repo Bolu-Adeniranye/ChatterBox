@@ -45,6 +45,7 @@ const Login = () => {
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(res);
 
       const imgUrl = await upload(avatar.file);
 
@@ -76,7 +77,7 @@ const Login = () => {
     const { email, password } = Object.fromEntries(formData);
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const response = await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.log(error);
       toast.error(error.message);
