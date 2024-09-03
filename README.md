@@ -1,5 +1,5 @@
 
-# React Chat App
+# React Chat App 
 
 This project is a React Chat Application designed using ReactJS, NodeJS, and Firebase. The tutorial is based on the Code Along Project by LamaDev. [Watch the tutorial here.](https://www.youtube.com/watch?v=domt_Sx-wTY)
 
